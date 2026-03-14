@@ -1,0 +1,49 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "Build Project",
+            "command": "make",
+            "options": {
+                "cwd": "${workspaceRoot}"
+            },
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "type": "shell",
+            "label": "Clean Build",
+            "command": "rd /s /q build",
+            "options": {
+                "cwd": "${workspaceRoot}"
+            },
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            }
+        },
+        {
+            "type": "shell",
+            "label": "Program Memory",
+            "command": "openocd",
+            "args": [
+             "-s", "C:/Users/krcil/AppData/Local/stm32cube/bundles/gnu-tools-for-stm32/14.3.1+st.2/bin/scripts",
+             "-c", "set CPUTAPID 0x2ba01477",
+             "-f", "interface/stlink.cfg",
+             "-f", "target/stm32f1x.cfg",
+             "-c", "program build/BlinkOdev.elf verify reset exit"
+
+            ],
+            "options": {
+                "cwd": "${workspaceRoot}"
+            },
+            "problemMatcher": [],
+            "group": "none"
+        }
+    ]
+}
